@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
+
 
       # Estratégia Monorepo (pois serão vários apps no mesmo repositório):
 
@@ -40,6 +40,9 @@ jobs:
 
               cd $app_dir
               npm install --ignore-scripts
+
+              # Garantir que o Jest está executável
+              chmod +x node_modules/.bin/jest
 
               # AQUI ESTÁ O SEU REQUISITO DE MÍNIMO80%
               # O Jest vai falhar se a cobertura global for menor que 80%
