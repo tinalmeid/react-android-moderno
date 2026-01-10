@@ -41,6 +41,9 @@ jobs:
               cd $app_dir
               npm install --ignore-scripts
 
+              # Garantir que o Jest está executável
+              chmod +x node_modules/.bin/jest
+
               # AQUI ESTÁ O SEU REQUISITO DE MÍNIMO80%
               # O Jest vai falhar se a cobertura global for menor que 80%
               npx jest --coverage --coverageThreshold='{"global":{"branches":80,"functions":80,"lines":80,"statements":80}}'
