@@ -1,0 +1,56 @@
+name: CI/CD Quality Gate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  quality-check:
+    name: Quality & Coverage Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout do Código
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Importante para o SonarCloud analisar o histórico git
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      # Estratégia Monorepo (pois serão vários apps no mesmo repositório):
+
+      - name: 🧪 Executar Testes e Verificar Cobertura (Local Gate)
+        run: |
+          # Procura todos os package.json (exceto node_modules) para identificar Apps
+          APPS=$(find . -name "package.json" -not -path "*/node_modules/*" -not -path "./package.json")
+
+          if [ -z "$APPS" ]; then
+            echo "⚠️ Nenhum aplicativo encontrado para testar ainda. (Normal para setup inicial)"
+          else
+            for app_config in $APPS; do
+              app_dir=$(dirname "$app_config")
+              echo "🚀 Testando App na pasta: $app_dir"
+
+              cd $app_dir
+              npm install --ignore-scripts
+
+              # AQUI ESTÁ O SEU REQUISITO DE MÍNIMO80%
+              # O Jest vai falhar se a cobertura global for menor que 80%
+              npx jest --coverage --coverageThreshold='{"global":{"branches":80,"functions":80,"lines":80,"statements":80}}'
+
+              cd - > /dev/null
+            done
+          fi
+
+      - name: 📡 SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@ffc3010689be73b8e5ae0c57ce35968afd7909e8
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Gerado automaticamente pelo Git
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Você precisa adicionar isso nos Secrets do Repo
