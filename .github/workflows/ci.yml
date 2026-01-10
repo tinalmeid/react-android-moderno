@@ -68,3 +68,5 @@ jobs:
             -Dsonar.test.inclusions=**/*.test.js
             -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
             -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**
+            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md
+            -Dsonar.test.exclusions=**/node_modules/**,**/.github/**

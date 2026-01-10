@@ -3,10 +3,22 @@ node_modules/
 /.pnp
 .pnp.js
 
-# Testing
-/coverage
+# Expo
+.expo/
+web-build/
 
-# Production
+# Testes e Cobertura (Isso limpa a sujeira do Sonar)
+coverage/
+*.lcov
+reports/
+
+# Builds de Android/iOS (Para o futuro)
+android/app/build/
+android/.gradle/
+ios/Pods/
+ios/build/
+*.apk
+*.aab
 /build
 /dist
 
@@ -33,6 +45,14 @@ lerna-debug.log*
 *.njsproj
 *.sln
 *.sw?
+Thumbs.db
+
+# Variáveis de Ambiente (Segurança Crítica)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # WakaTime
 .wakatime.cfg
