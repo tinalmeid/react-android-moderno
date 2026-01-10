@@ -12,4 +12,16 @@ describe("Smoke Test - Calc Module", () => {
     const resultado = sub(5, 2);
     expect(resultado).toBe(3);
   });
+
+  // Teste adicional para garantir que a soma de números negativos funciona corretamente
+  it("deve somar -1 + -1 e retornar -2", () => {
+    const resultado = sum(-1, -1);
+    expect(resultado).toBe(-2);
+  });
+
+  // Teste adicional para garantir que a subtração de números negativos funciona corretamente
+  it("deve subtrair -2 - -1 e retornar -1", () => {
+    const resultado = sub(-2, -1);
+    expect(resultado).toBe(-1);
+  });
 });
