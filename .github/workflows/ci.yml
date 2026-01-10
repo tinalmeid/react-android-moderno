@@ -53,7 +53,18 @@ jobs:
           fi
 
       - name: 📡 SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@ffc3010689be73b8e5ae0c57ce35968afd7909e8
+        # FIX: Atualizado para v4 (remove o aviso de 'deprecated')
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Gerado automaticamente pelo Git
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # Você precisa adicionar isso nos Secrets do Repo
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          # FIX: Passamos as configurações aqui ("Hardcoded") para garantir que funcione
+          args: >
+            -Dsonar.projectKey=tinalmeid_react-android-moderno
+            -Dsonar.organization=tinalmeid
+            -Dsonar.sources=.
+            -Dsonar.tests=.
+            -Dsonar.test.inclusions=**/*.test.js
+            -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
+            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**
