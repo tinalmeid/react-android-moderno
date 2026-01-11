@@ -1,6 +1,6 @@
 /**
  *  Serviço responsável pela lógica de sorteio aleatório de números.
- *  Segue o principio  de responsabilidade única (SRP) da arquitetura SOLID.
+ *  Segue o princípio  de responsabilidade única (SRP) da arquitetura SOLID.
  *
  * @author Tina de Almeida
  * @date 2026-11-01

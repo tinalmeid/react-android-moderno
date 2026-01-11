@@ -143,7 +143,7 @@ Monitoramento de tarefas de conversão e modernização.
 ID Jira       Módulo / Tarefa                                  Branch                          Status
 ENG-641	     ⚙️ Configuração Projeto CI, Actions e Sonar	   ENG-641-chore/config-inicial	  ✅ Concluído
 ENG-645	     🎲 Fundamentos e App 1 (Sorteador Numérico)	   ENG-645-feat/app1-sorteador	  ✅ Concluído
-ENG-646	     📰 Layouts Básicos e App 2 (Portal de Notícias)   ENG-646-feat/app2-noticias	  📅 Planejado
+ENG-646	     📰 Layouts Básicos e App 2 (Portal de Notícias)   ENG-646-feat/app2-noticias	  ✅ Concluído
 ENG-647	     🎬 Layouts Complexos e App 3 (Clone Netflix UI)   ENG-647-feat/app3-netflix	  📅 Planejado
 ENG-648	     💬 Lógica JavaScript e App 4 (Frases do Dia)	   ENG-648-feat/app4-frases	      📅 Planejado
 ENG-649	     ✊ Componentização e App 5 (Jokenpo)	           ENG-649-feat/app5-jokenpo	  📅 Planejado
