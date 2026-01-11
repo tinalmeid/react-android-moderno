@@ -59,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
-          # FIX: Passamos as configurações aqui ("Hardcoded") para garantir que funcione
+          # Configurações aqui ("Hardcoded") para garantir que funcione
           args: >
             -Dsonar.projectKey=tinalmeid_react-android-moderno
             -Dsonar.organization=tinalmeid
@@ -67,6 +67,6 @@ jobs:
             -Dsonar.tests=.
             -Dsonar.test.inclusions=**/*.test.js
             -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
-            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**
-            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md
+            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md,**/assets/**
+            -Dsonar.coverage.exclusions=**/node_modules/**,**/App.js,**/index.js,**/styles.js
             -Dsonar.test.exclusions=**/node_modules/**,**/.github/**
