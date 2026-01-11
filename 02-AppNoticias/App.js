@@ -28,6 +28,7 @@ export default function App() {
         </View>
 
         <FlatList
+          testID="flatlist-noticias"
           data={NOTICIAS}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}

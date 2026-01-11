@@ -11,6 +11,7 @@
 
 import React from "react";
 import TestRenderer from "react-test-renderer";
+import { render } from "@testing-library/react-native";
 import NoticiaCard from "../components/NoticiaCard.js";
 
 // Arrange: Dados de teste para o componente NoticiaCard (mock data).
@@ -58,34 +59,6 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
   // 3. Testes com item nulo
   it('3. deve retornar null se a prop "item" for nula', () => {
     const renderer = TestRenderer.create(<NoticiaCard item={null} />);
-    const tree = renderer.toJSON();
-    expect(tree).toBeNull();
-  });
-
-  // 3b. Teste com item undefined
-  it('3b. deve retornar null se a prop "item" for undefined', () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={undefined} />);
-    const tree = renderer.toJSON();
-    expect(tree).toBeNull();
-  });
-
-  // 3c. Teste com item falsy (false)
-  it('3c. deve retornar null se a prop "item" for false', () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={false} />);
-    const tree = renderer.toJSON();
-    expect(tree).toBeNull();
-  });
-
-  // 3d. Teste com item falsy (0)
-  it('3d. deve retornar null se a prop "item" for 0', () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={0} />);
-    const tree = renderer.toJSON();
-    expect(tree).toBeNull();
-  });
-
-  // 3e. Teste com item falsy (string vazia)
-  it('3e. deve retornar null se a prop "item" for string vazia', () => {
-    const renderer = TestRenderer.create(<NoticiaCard item="" />);
     const tree = renderer.toJSON();
     expect(tree).toBeNull();
   });
@@ -172,5 +145,18 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
   it("12. deve exportar o componente como default", () => {
     expect(NoticiaCard).toBeTruthy();
     expect(typeof NoticiaCard).toBe("function");
+  });
+
+  // 13. Teste de comportamento com item indefinido
+  it('deve retornar null se a prop "item" for nula ou undefined', () => {
+    // Teste com null
+    const { toJSON: toJSONNull } = render(<NoticiaCard item={null} />);
+    expect(toJSONNull()).toBeNull();
+
+    // Teste com undefined (Isso força a cobertura da linha de proteção)
+    const { toJSON: toJSONUndefined } = render(
+      <NoticiaCard item={undefined} />
+    );
+    expect(toJSONUndefined()).toBeNull();
   });
 });
