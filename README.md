@@ -141,8 +141,8 @@ Para manter a qualidade e a rastreabilidade do projeto, seguimos estritamente:
 Monitoramento de tarefas de conversão e modernização.
 ```bash
 ID Jira       Módulo / Tarefa                                  Branch                          Status
-ENG-641	     ⚙️ Configuração Projeto CI, Actions e Sonar	   ENG-641-chore/config-inicial	  🔄 Em Andamento
-ENG-645	     🎲 Fundamentos e App 1 (Sorteador Numérico)	   ENG-645-feat/app1-sorteador	  📅 Planejado
+ENG-641	     ⚙️ Configuração Projeto CI, Actions e Sonar	   ENG-641-chore/config-inicial	  ✅ Concluído
+ENG-645	     🎲 Fundamentos e App 1 (Sorteador Numérico)	   ENG-645-feat/app1-sorteador	  ✅ Concluído
 ENG-646	     📰 Layouts Básicos e App 2 (Portal de Notícias)   ENG-646-feat/app2-noticias	  📅 Planejado
 ENG-647	     🎬 Layouts Complexos e App 3 (Clone Netflix UI)   ENG-647-feat/app3-netflix	  📅 Planejado
 ENG-648	     💬 Lógica JavaScript e App 4 (Frases do Dia)	   ENG-648-feat/app4-frases	      📅 Planejado
