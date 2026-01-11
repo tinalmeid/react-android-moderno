@@ -53,7 +53,7 @@ jobs:
           fi
 
       - name: 📡 SonarCloud Scan
-        # FIX: Atualizado para v4 (remove o aviso de 'deprecated')
+        # Atualizado para v4
         uses: SonarSource/sonarqube-scan-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -70,3 +70,4 @@ jobs:
             -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md,**/assets/**
             -Dsonar.coverage.exclusions=**/node_modules/**,**/App.js,**/index.js,**/styles.js
             -Dsonar.test.exclusions=**/node_modules/**,**/.github/**
+

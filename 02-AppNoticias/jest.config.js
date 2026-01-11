@@ -15,9 +15,26 @@ module.exports = {
     "<rootDir>/src/**/__tests__/**/*.{js,jsx}",
     "<rootDir>/src/**/*.{spec,test}.{js,jsx}",
   ],
+  collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.{js,jsx}",
     "!src/**/*.test.{js,jsx}",
     "!src/**/__tests__/**",
+    "!src/data/**",
+    "!**/coverage/**",
+    "!**/node_modules/**",
   ],
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "/.expo/",
+  ],
+  coverageReporters: ["text", "lcov", "html", "json-summary"],
+  coverageThreshold: {
+    global: {
+      statements: 40,
+      branches: 0,
+      functions: 0,
+      lines: 40,
+    },
+  },
 };

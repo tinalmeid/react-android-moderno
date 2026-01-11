@@ -31,7 +31,8 @@ beforeAll(() => {
       ) ||
         args[0].includes("import") ||
         args[0].includes("scope") ||
-        args[0].includes("deprecated"))
+        args[0].includes("deprecated") ||
+        args[0].includes("setTimeout"))
     ) {
       return;
     }
