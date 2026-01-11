@@ -67,8 +67,12 @@ jobs:
             -Dsonar.tests=.
             -Dsonar.test.inclusions=**/*.test.js
             -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
+
             # Exclusões Gerais (Ignora o arquivo todo)
-            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md
+            -Dsonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,**/.github/**,**/coverage/**,**/*.config.js,**/README.md,**/assets/**
+
+            # FIX: Exclusões APENAS de Cobertura (Analisa bugs, mas não pede teste)
+            # Removemos App.js e index.js da conta de porcentagem
+            -Dsonar.coverage.exclusions=**/node_modules/**,**/App.js,**/index.js,**/styles.js
+
             -Dsonar.test.exclusions=**/node_modules/**,**/.github/**
-            # Exclusões Específicas por App (Ignora arquivos específicos)
-            -Dsonar.coverage.exclusions=**/node_modules/**,**/App.js,**/index.js,**/styles.js,**/package.json
