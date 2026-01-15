@@ -21,8 +21,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     "src/**/*.{js,jsx,ts,tsx}",
-    "App.js", // Garante que o App entra
-    "!src/data/**", // Ignora dados
+    "!src/**/*.test.{js,jsx}",
     "!**/index.js", // Ignora o boot do app
     "!**/coverage/**",
     "!**/node_modules/**",

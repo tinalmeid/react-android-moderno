@@ -10,6 +10,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/data/**/*.{js,jsx}', // Inclui mockData.js para cobertura
     '!src/**/*.test.{js,jsx}',
+    '!**/jest.setup.js',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
