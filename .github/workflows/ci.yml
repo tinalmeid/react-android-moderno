@@ -25,7 +25,6 @@ jobs:
 
 
       # Estratégia Monorepo (pois serão vários apps no mesmo repositório):
-
       - name: 🧪 Executar Testes e Verificar Cobertura (Local Gate)
         run: |
           # Procura todos os package.json (exceto node_modules) para identificar Apps

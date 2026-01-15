@@ -20,16 +20,13 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
-    "src/**/*.{js,jsx}",
-    "!src/**/*.test.{js,jsx}",
-    "!src/**/__tests__/**",
-    "!src/data/**",
-    "**/*.{js,jsx}",
+    "src/**/*.{js,jsx,ts,tsx}",
+    "App.js", // Garante que o App entra
+    "!src/data/**", // Ignora dados
+    "!**/index.js", // Ignora o boot do app
     "!**/coverage/**",
     "!**/node_modules/**",
     "!**/babel.config.js",
-    "!**/jest.config.js",
-    "!**/jest-setup-expo.js",
     "!**/jest.setup.js",
   ],
   coveragePathIgnorePatterns: ["/node_modules/", "/.expo/"],

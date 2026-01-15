@@ -1,17 +1,22 @@
 sonar.projectKey=tinalmeid_react-android-moderno
 sonar.organization=tinalmeid
 
-# Configurações Gerais
+# Configurações Gerais do Monorepo
 sonar.sources=.
 sonar.sourceEncoding=UTF-8
-sonar.exclusions=**/node_modules/**, **/android/**, **/ios/**, **/.expo/**, **/web-build/**
+sonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**
 
-# Configurações de Teste e Cobertura
-# O Sonar vai procurar arquivos de teste com estas extensões
+# Configurações de Teste e Cobertura para TODOS os apps
 sonar.tests=.
 sonar.test.inclusions=**/*.test.js,**/*.test.tsx,**/*.spec.js,**/*.spec.tsx
 sonar.test.exclusions=**/node_modules/**
 
-# IMPORTANTE: Diz ao Sonar para varrer todas as pastas procurando o relatório do Jest
-sonar.javascript.lcov.reportPaths=**/coverage/lcov.info
-sonar.coverage.exclusions=**/*.test.js,**/*.test.tsx,**/App.js,**/index.js,**/babel.config.js,**/metro.config.js
+# IMPORTANTE: Aponta para relatórios de cobertura de TODOS os apps
+# SonarCloud vai agregar automaticamente
+sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info,02-AppNoticias/coverage/lcov.info,03-AppNetflix/coverage/lcov.info
+
+# Exclusões de cobertura (testes, config files, React Native UI components)
+sonar.coverage.exclusions=**/*.test.js,**/*.test.tsx,**/babel.config.js,**/metro.config.js,**/jest.config.js,**/jest.setup.js,03-AppNetflix/src/components/**,03-AppNetflix/src/screens/**,02-AppNoticias/src/components/**
+
+# Threshold global de cobertura (opcional - comenta se quiser apenas ver a métrica)
+# sonar.qualitygate.wait=true
