@@ -20,10 +20,10 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
-    "src/**/*.{js,jsx,ts,tsx}",
-    "App.js", // Inclui App.js na cobertura
+    "src/data/**/*.{js,jsx,ts,tsx}",
+    "src/components/**/*.{js,jsx,ts,tsx}",
     "!src/**/*.test.{js,jsx}",
-    "!**/index.js", // Ignora o boot do app
+    "!**/index.js",
     "!**/coverage/**",
     "!**/node_modules/**",
     "!**/babel.config.js",

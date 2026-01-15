@@ -8,9 +8,10 @@ module.exports = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*)',
   ],
   collectCoverageFrom: [
-    'src/data/**/*.{js,jsx}', // Apenas código testável
+    'src/data/**/*.{js,jsx}',
     '!src/**/*.test.{js,jsx}',
     '!**/jest.setup.js',
+    '!**/node_modules/**',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
