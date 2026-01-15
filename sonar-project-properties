@@ -1,23 +1,22 @@
 sonar.projectKey=tinalmeid_react-android-moderno
 sonar.organization=tinalmeid
 
-# Configurações Gerais do Monorepo
-sonar.sources=.
-sonar.sourceEncoding=UTF-8
-# AGRESSIVO: Excluir TODOS componentes React Native, configs e arquivos que não podem ser testados
-sonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**,**/App.js,**/index.js,**/babel.config.js,**/jest.config.js,**/jest.setup.js,**/metro.config.js,**/**/components/**,**/**/screens/**,**/coverage/**,.sonarlint/**
+# ========== MONOREPO: 3 APPS INDEPENDENTES ==========
+# Estratégia: Apenas arquivos TESTÁVEIS são analisados
 
-# Configurações de Teste e Cobertura para TODOS os apps
+# Somente análise de código testável (data layer, services)
+sonar.sources=01-AppSorteio/src/services,02-AppNoticias/src/data,02-AppNoticias/src/components,03-AppNetflix/src/data
+
+# Relatórios de cobertura de TODOS os apps
+sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info,02-AppNoticias/coverage/lcov.info,03-AppNetflix/coverage/lcov.info
+
+# Configurações de Teste
 sonar.tests=.
 sonar.test.inclusions=**/*.test.js,**/*.test.tsx,**/*.spec.js,**/*.spec.tsx
 sonar.test.exclusions=**/node_modules/**
 
-# IMPORTANTE: Aponta para relatórios de cobertura de TODOS os apps
-# SonarCloud vai agregar automaticamente
-sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info,02-AppNoticias/coverage/lcov.info,03-AppNetflix/coverage/lcov.info
+# Exclusões globais (para qualquer arquivo não mencionado em sonar.sources)
+sonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**
 
-# Exclusões de cobertura - AGRESSIVO: apenas código testável
-sonar.coverage.exclusions=**/*.test.js,**/*.test.tsx,**/*.test.jsx,**/babel.config.js,**/jest.config.js,**/jest.setup.js,**/metro.config.js,**/App.js,**/index.js,**/**/components/**,**/**/screens/**,**/coverage/**
-
-# Threshold global de cobertura (opcional - comenta se quiser apenas ver a métrica)
-# sonar.qualitygate.wait=true
+# Configuração geral
+sonar.sourceEncoding=UTF-8
