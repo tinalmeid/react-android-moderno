@@ -20,7 +20,7 @@ cd ..
 # 03-AppNetflix
 echo -e "\n\n🎬 Testando 03-AppNetflix..."
 cd 03-AppNetflix
-npm test -- --coverage --collectCoverageFrom="src/data/**/*.js"
+npm test -- --coverage
 cd ..
 
 echo -e "\n\n================================"

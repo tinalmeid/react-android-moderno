@@ -19,7 +19,7 @@ Pop-Location
 # 03-AppNetflix
 Write-Host "`n🎬 Testando 03-AppNetflix..." -ForegroundColor Yellow
 Push-Location "03-AppNetflix"
-npm test -- --coverage --collectCoverageFrom="src/data/**/*.js"
+npm test -- --coverage
 Pop-Location
 
 Write-Host "`n================================" -ForegroundColor Cyan
