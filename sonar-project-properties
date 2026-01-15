@@ -16,7 +16,10 @@ sonar.test.exclusions=**/node_modules/**
 sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info,02-AppNoticias/coverage/lcov.info,03-AppNetflix/coverage/lcov.info
 
 # Exclusões de cobertura (testes, config files, React Native UI components)
-sonar.coverage.exclusions=**/*.test.js,**/*.test.tsx,**/babel.config.js,**/metro.config.js,**/jest.config.js,**/jest.setup.js,03-AppNetflix/src/components/**,03-AppNetflix/src/screens/**,02-AppNoticias/src/components/**
+sonar.coverage.exclusions=**/*.test.js,**/*.test.tsx,**/babel.config.js,**/metro.config.js,**/jest.config.js,**/jest.setup.js,03-AppNetflix/src/components/**,03-AppNetflix/src/screens/**,03-AppNetflix/App.js,02-AppNoticias/src/components/**,02-AppNoticias/App.js,01-AppSorteio/index.js,calc.js
+
+# Exclusões de origem (mesmos arquivos não devem ser analisados)
+sonar.exclusions=**/*.test.js,**/*.test.tsx,**/babel.config.js,**/metro.config.js,**/jest.config.js,**/jest.setup.js,03-AppNetflix/src/components/**,03-AppNetflix/src/screens/**,03-AppNetflix/App.js,02-AppNoticias/src/components/**,02-AppNoticias/App.js,01-AppSorteio/index.js,calc.js
 
 # Threshold global de cobertura (opcional - comenta se quiser apenas ver a métrica)
 # sonar.qualitygate.wait=true
