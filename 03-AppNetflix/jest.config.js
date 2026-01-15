@@ -8,23 +8,19 @@ module.exports = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*)',
   ],
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
-    '!src/data/**',
-    '!src/components/**', // React Native components requerem device/emulator
-    '!src/screens/**',    // React Native screens requerem device/emulator
+    'src/data/**/*.{js,jsx}', // Inclui mockData.js para cobertura
     '!src/**/*.test.{js,jsx}',
   ],
   coveragePathIgnorePatterns: [
     '/node_modules/',
     '/coverage/',
   ],
-  // Thresholds apenas para código testável (data layer)
   coverageThreshold: {
     global: {
-      statements: 0,
-      branches: 0,
-      functions: 0,
-      lines: 0,
+      statements: 80,
+      branches: 80,
+      functions: 80,
+      lines: 80,
     },
   },
 };
