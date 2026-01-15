@@ -1,22 +1,22 @@
 sonar.projectKey=tinalmeid_react-android-moderno
 sonar.organization=tinalmeid
 
-# ========== MONOREPO: 3 APPS INDEPENDENTES ==========
-# Estratégia: Apenas arquivos TESTÁVEIS são analisados
+# ========== MONOREPO: Apenas App 1 (01-AppSorteio) é analisado ==========
+# App 2 e 3 testam interface (React Native) - não há cobertura testável com Jest
 
-# Somente análise de código testável (data layer, services)
-sonar.sources=01-AppSorteio/src/services,02-AppNoticias/src/data,02-AppNoticias/src/components,03-AppNetflix/src/data
+# Apenas o App 1 (que testa lógica de negócio)
+sonar.sources=01-AppSorteio/src
 
-# Relatórios de cobertura de TODOS os apps
-sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info,02-AppNoticias/coverage/lcov.info,03-AppNetflix/coverage/lcov.info
+# Relatório de cobertura do App 1
+sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info
 
 # Configurações de Teste
-sonar.tests=.
-sonar.test.inclusions=**/*.test.js,**/*.test.tsx,**/*.spec.js,**/*.spec.tsx
+sonar.tests=01-AppSorteio
+sonar.test.inclusions=**/*.test.js,**/*.spec.js
 sonar.test.exclusions=**/node_modules/**
 
-# Exclusões globais (para qualquer arquivo não mencionado em sonar.sources)
-sonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**
+# Exclusões
+sonar.exclusions=**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**,02-AppNoticias/**,03-AppNetflix/**
 
 # Configuração geral
 sonar.sourceEncoding=UTF-8
