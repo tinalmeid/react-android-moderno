@@ -1,8 +1,8 @@
 /**
- * @file HeroBanners.js
+ * @file MovieRow.js
  * @description Componente que exibe banners de destaque para filmes ou séries. (FlatList)
  *
- * @module components/HeroBanners
+ * @module components/MovieRow
  * @author Tina Almeida
  * @date 2025-01-15
  * Task: ENG-647 Layouts Básicos e App 3 (Clone Netflix)
