@@ -10,8 +10,7 @@
  */
 
 import React from "react";
-import TestRenderer from "react-test-renderer";
-import { render } from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
 import NoticiaCard from "../components/NoticiaCard.js";
 
 // Arrange: Dados de teste para o componente NoticiaCard (mock data).
@@ -26,31 +25,31 @@ const MOCK_ITEM = {
 
 const MOCK_ITEM_ALTERNATIVE = {
   id: 2,
-  titulo: "Tecnologia: Novo smartphone revoluciona mercado",
+  titulo: "Tecnologia: React Native lança nova arquitetura",
   data: "10 Jan 2026",
-  imagem: "https://example.com/smartphone.jpg",
-  resumo: "Lançamento surpreende indústria com inovações...",
+  imagem: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500",
+  resumo: "A nova versão promete 3x mais performance...",
 };
 
 const MOCK_ITEM_SPECIAL_CHARS = {
   id: 3,
-  titulo: "Notícia: 100% real & legítima! #Incrível",
-  data: "09 Jan 2026",
-  imagem: "https://example.com/special.jpg",
-  resumo: "Conteúdo com acentuação, ç, ã, é, etc...",
+  titulo: "Dica Culinária: Como fazer Tender na Air Fryer",
+  data: "23 Dez 2025",
+  imagem: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=500",
+  resumo: "Receita rápida para quem não tem tempo a perder...",
 };
 
 describe("NoticiaCard Component - Renderização e Comportamento", () => {
   // 1. Teste de Renderização Básica - verifica se o componente é criado
   it("1. deve criar a instância do componente com dados válidos", () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={MOCK_ITEM} />);
+    const renderer = render(<NoticiaCard item={MOCK_ITEM} />);
     expect(renderer).toBeDefined();
     expect(renderer).not.toBeNull();
   });
 
   // 2. Teste de Renderização com dados válidos
   it("2. deve aceitar prop item com campos obrigatórios", () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={MOCK_ITEM} />);
+    const renderer = render(<NoticiaCard item={MOCK_ITEM} />);
     expect(() => {
       renderer.toJSON();
     }).not.toThrow();
@@ -58,7 +57,7 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
 
   // 3. Testes com item nulo
   it('3. deve retornar null se a prop "item" for nula', () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={null} />);
+    const renderer = render(<NoticiaCard item={null} />);
     const tree = renderer.toJSON();
     expect(tree).toBeNull();
   });
@@ -71,9 +70,7 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
 
   // 5. Teste com dados alternativos
   it("5. deve renderizar com dados alternativos", () => {
-    const renderer = TestRenderer.create(
-      <NoticiaCard item={MOCK_ITEM_ALTERNATIVE} />
-    );
+    const renderer = render(<NoticiaCard item={MOCK_ITEM_ALTERNATIVE} />);
     expect(() => {
       renderer.toJSON();
     }).not.toThrow();
@@ -81,9 +78,7 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
 
   // 6. Teste com caracteres especiais
   it("6. deve renderizar com caracteres especiais", () => {
-    const renderer = TestRenderer.create(
-      <NoticiaCard item={MOCK_ITEM_SPECIAL_CHARS} />
-    );
+    const renderer = render(<NoticiaCard item={MOCK_ITEM_SPECIAL_CHARS} />);
     expect(() => {
       renderer.toJSON();
     }).not.toThrow();
@@ -91,22 +86,20 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
 
   // 7. Teste múltiplas instâncias
   it("7. deve criar múltiplas instâncias sem erros", () => {
-    const renderer1 = TestRenderer.create(<NoticiaCard item={MOCK_ITEM} />);
-    const renderer2 = TestRenderer.create(
-      <NoticiaCard item={MOCK_ITEM_ALTERNATIVE} />
-    );
-    const renderer3 = TestRenderer.create(
-      <NoticiaCard item={MOCK_ITEM_SPECIAL_CHARS} />
-    );
+    const renderer1 = render(<NoticiaCard item={MOCK_ITEM} />);
+    const renderer2 = render(<NoticiaCard item={MOCK_ITEM_ALTERNATIVE} />);
+    const renderer3 = render(<NoticiaCard item={MOCK_ITEM_SPECIAL_CHARS} />);
 
     expect(renderer1).toBeTruthy();
     expect(renderer2).toBeTruthy();
     expect(renderer3).toBeTruthy();
+
+    expect(screen.toJSON()).toBeDefined();
   });
 
   // 8. Teste de estrutura com dados completos
   it("8. deve não lançar erro ao acessar toJSON() com dados válidos", () => {
-    const renderer = TestRenderer.create(<NoticiaCard item={MOCK_ITEM} />);
+    const renderer = render(<NoticiaCard item={MOCK_ITEM} />);
     expect(() => {
       const tree = renderer.toJSON();
       return tree;
@@ -117,7 +110,7 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
   it("9. deve renderizar com diferentes variações de dados sem erros", () => {
     const items = [MOCK_ITEM, MOCK_ITEM_ALTERNATIVE, MOCK_ITEM_SPECIAL_CHARS];
     items.forEach((item) => {
-      const renderer = TestRenderer.create(<NoticiaCard item={item} />);
+      const renderer = render(<NoticiaCard item={item} />);
       expect(() => {
         renderer.toJSON();
       }).not.toThrow();
@@ -128,7 +121,7 @@ describe("NoticiaCard Component - Renderização e Comportamento", () => {
   it("10. deve testar múltiplos valores falsy", () => {
     const falsyValues = [null, undefined, false, 0, ""];
     falsyValues.forEach((falsyValue) => {
-      const renderer = TestRenderer.create(<NoticiaCard item={falsyValue} />);
+      const renderer = render(<NoticiaCard item={falsyValue} />);
       const tree = renderer.toJSON();
       expect(tree).toBeNull();
     });

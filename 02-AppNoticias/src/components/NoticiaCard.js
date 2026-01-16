@@ -1,3 +1,13 @@
+/**
+ * @file NoticiaCard.js
+ * @description Componente que exibe um card de notícia com imagem, título, data e resumo.
+ *
+ * @module components/NoticiaCard
+ * @author Tina de Almeida
+ * @date 2026-11-01
+ * Task: ENG-646 Layouts Básicos e App 2 (Portal de Notícias)
+ */
+
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import PropTypes from "prop-types";

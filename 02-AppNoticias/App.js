@@ -30,7 +30,7 @@ export default function App() {
         <FlatList
           testID="flatlist-noticias"
           data={NOTICIAS}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           renderItem={renderItem}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
