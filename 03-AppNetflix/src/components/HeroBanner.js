@@ -1,8 +1,8 @@
 /**
- * @file HeroBanners.js
+ * @file HeroBanner.js
  * @description Componente que exibe banners de destaque para filmes ou séries.
  *
- * @module components/HeroBanners
+ * @module components/HeroBanner
  * @author Tina Almeida
  * @date 2025-01-15
  * Task: ENG-647 Layouts Básicos e App 3 (Clone Netflix)
@@ -20,20 +20,13 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Feather, Ionicons } from "@expo/vector-icons";
 import PropTypes from "prop-types";
 
-/**
- * Renderiza o banner principal
- * @param {Object} props - Propriedades do componente
- * @param {import('../data/mockData').Movie} props.movie - Objeto do filme a ser exibido no banner
- */
-export default function HeroBanners({ movie }) {
-  if (!movie) {
-    return null;
-  }
+export default function HeroBanner({ movie }) {
+  if (!movie) return null;
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={{ uri: movie.url }} // Atualizado para usar 'url'
+        source={{ uri: movie.url }}
         style={styles.heroImage}
         accessibilityRole="image"
         accessibilityLabel={`Destaque: ${movie.title}`}
@@ -42,31 +35,20 @@ export default function HeroBanners({ movie }) {
           colors={["transparent", "rgba(0,0,0,0.8)", "#000"]}
           style={styles.gradient}
         >
-          {/* Exibindo o Gênero como tags */}
           <Text style={styles.tags}>{movie.genre}</Text>
 
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              style={styles.iconButton}
-              accessibilityLabel="Adicionar à minha lista"
-            >
+            <TouchableOpacity style={styles.iconButton}>
               <Feather name="plus" size={24} color="#FFF" />
               <Text style={styles.textButton}>Minha Lista</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.playButton}
-              accessibilityRole="button"
-              accessibilityLabel={`Assistir ${movie.title}`}
-            >
+            <TouchableOpacity style={styles.playButton}>
               <Ionicons name="play" size={24} color="#000" />
               <Text style={styles.playText}>Assistir</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.iconButton}
-              accessibilityLabel="Mais informações"
-            >
+            <TouchableOpacity style={styles.iconButton}>
               <Feather name="info" size={24} color="#FFF" />
               <Text style={styles.textButton}>Saiba Mais</Text>
             </TouchableOpacity>
@@ -77,10 +59,10 @@ export default function HeroBanners({ movie }) {
   );
 }
 
-// Atualização das PropTypes para refletir a estrutura correta do objeto movie
-HeroBanners.propTypes = {
+// CORREÇÃO: Apenas UMA definição de PropTypes e usando o nome correto (Singular)
+HeroBanner.propTypes = {
   movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired, // Alterado para string para bater com o MockData
     url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string,
@@ -97,15 +79,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     alignItems: "center",
   },
-  tags: {
-    color: "#fff",
-    fontSize: 13,
-    marginBottom: 15,
-    fontWeight: "500",
-    textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
-  },
+  tags: { color: "#fff", fontSize: 13, marginBottom: 15, fontWeight: "500" },
   buttonContainer: {
     flexDirection: "row",
     width: "85%",
@@ -121,20 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
   },
-  playText: {
-    color: "#000",
-    fontWeight: "bold",
-    fontSize: 16,
-  },
+  playText: { color: "#000", fontWeight: "bold", fontSize: 16 },
   iconButton: { alignItems: "center" },
   textButton: { color: "#FFF", fontSize: 10, marginTop: 4 },
 });
-
-HeroBanners.propTypes = {
-  movie: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-  }),
-};

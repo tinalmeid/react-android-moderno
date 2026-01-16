@@ -69,10 +69,10 @@ export const MOVIES = [
  * Filme em destaque na página inicial
  */
 export const FEATURED_MOVIE = {
-  id: 0,
+  id: "0",
   title: "The Last of Us",
   genre: "Sombrio • Aventura • Drama",
   description:
     "Em um mundo pós-apocalíptico devastado por uma infecção fúngica, Joel, um sobrevivente endurecido, é contratado para escoltar Ellie, uma adolescente imune ao vírus, através dos Estados Unidos. À medida que enfrentam perigos inimagináveis e formam um vínculo profundo, eles descobrem que a verdadeira ameaça pode não ser apenas os infectados, mas também a natureza humana.",
-  url: "https://image.tmdb.org/t/p/original/uDgy6hyPd82kOHh6I95FLtLnj6p.jpg'",
+  url: "https://image.tmdb.org/t/p/original/uDgy6hyPd82kOHh6I95FLtLnj6p.jpg",
 };

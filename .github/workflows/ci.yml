@@ -30,12 +30,12 @@ jobs:
           if [ -d "01-Sorteador" ]; then
              echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
              cd 01-Sorteador
-             npm install
+             npm install --ignore-scripts
              npm test -- --coverage
           elif [ -d "00-SmokeTeste" ]; then
              echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
              cd 00-SmokeTeste
-             npm install
+             npm install --ignore-scripts
              npm test -- --coverage
           else
              echo "⚠️ Pasta do App 1 não encontrada. Pulando testes."
