@@ -27,23 +27,33 @@ jobs:
       # --- TESTES DE REGRA DE NEGÓCIO (APP 1) ---
       - name: 🧪 Executar Testes (01-Sorteador)
         run: |
+          # 1. Smoke Teste (Se existir)
           if [ -d "00-SmokeTeste" ]; then
              echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
              cd 00-SmokeTeste
              npm install --ignore-scripts
              npm test -- --coverage
+             cd .. # IMPORTANTE: Voltar para a raiz
+          fi
+
+          # 2. App 01 - Sorteador
           if [ -d "01-Sorteador" ]; then
              echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
              cd 01-Sorteador
              npm install --ignore-scripts
              npm test -- --coverage
+             cd ..
+          fi
+
+          # 3. App 04 - Frases (Com correção do React 19)
           if [ -d "04-AppFrases" ]; then
              echo "💬 Testando Regras de Negócio do App 04-AppFrases..."
              cd 04-AppFrases
-             npm install --ignore-scripts
+             npm install --legacy-peer-deps --ignore-scripts
              npm test -- --coverage
+             cd ..
           else
-             echo "⚠️ Pasta do App 1 não encontrada. Pulando testes."
+             echo "⚠️ Pasta 04-AppFrases não encontrada (verifique o nome)."
           fi
 
       # --- SONAR CLOUD (CONFIGURAÇÃO BLINDADA) ---
