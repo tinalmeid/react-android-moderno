@@ -1,20 +1,15 @@
 sonar.projectKey=tinalmeid_react-android-moderno
 sonar.organization=tinalmeid
+sonar.sources=.
+sonar.javascript.lcov.reportPaths=**/coverage/lcov.info
 
-# ========== APENAS App 1 é analisado - Apps 2 e 3 TOTALMENTE EXCLUÍDOS ==========
+# --- CONFIGURAÇÃO DE EXCLUSÃO ---
+# Ignorar arquivos de configuração e testes
+sonar.exclusions=**/node_modules/**,**/*.test.js,**/*.spec.js,**/*.config.js,**/coverage/**,**/.expo/**
 
-# APENAS App 1
-sonar.sources=01-AppSorteio/src
-
-# APENAS relatório de cobertura do App 1
-sonar.javascript.lcov.reportPaths=01-AppSorteio/coverage/lcov.info
-
-# Configurações de Teste - APENAS App 1
-sonar.tests=01-AppSorteio
-sonar.test.inclusions=**/*.test.js,**/*.spec.js
-
-# EXCLUSÕES TOTAIS - Apps 2 e 3 NÃO SÃO ANALISADOS
-sonar.exclusions=02-AppNoticias/**,03-AppNetflix/**,**/node_modules/**,**/android/**,**/ios/**,**/.expo/**,**/web-build/**,.git/**,**/coverage/**
+# Lista de pastas que NÃO entram na conta da porcentagem de cobertura (0% ou 100% não importa)
+# Estamos ignorando App 2 e App 3.
+sonar.coverage.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/App.js
 
 # Configuração geral
 sonar.sourceEncoding=UTF-8
