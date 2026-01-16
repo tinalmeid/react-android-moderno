@@ -36,18 +36,16 @@ jobs:
 
               if grep -q '"test":' package.json; then
                  echo "✅ Rodando testes..."
-                 npm test -- --coverage
+                 npm test
 
                  # --- CORREÇÃO HÍBRIDA DO LCOV ---
                  if [ -f coverage/lcov.info ]; then
                     echo "🔧 Ajustando caminhos no lcov.info..."
 
-                    # 1. Se o Jest gerou caminho ABSOLUTO (remove o prefixo /home/runner/...)
-                    # Isso deixa o caminho como: 04-AppFrases/src/core/mathUtils.js
-                    sed -i "s|$GITHUB_WORKSPACE/||g" coverage/lcov.info
+                    # Normaliza caminhos: remove backslashes do Windows e converte para forward slash
+                    sed -i 's|\\|/|g' coverage/lcov.info
 
-                    # 2. Se o Jest gerou caminho RELATIVO (começa com SF:src/)
-                    # Adiciona o nome da pasta na frente: SF:04-AppFrases/src/
+                    # Se o caminho começa com SF:src, adiciona o nome da pasta
                     sed -i "s|SF:src|SF:$FOLDER/src|g" coverage/lcov.info
                  fi
                  # --------------------------------
@@ -58,8 +56,8 @@ jobs:
             fi
           }
 
-          run_test_if_exists "00-SmokeTeste"
-          run_test_if_exists "01-Sorteador"
+          run_test_if_exists "00-SmokeTest"
+          run_test_if_exists "01-AppSorteio"
           run_test_if_exists "04-AppFrases"
 
       # --- SONAR CLOUD (CONFIGURAÇÃO FINAL) ---

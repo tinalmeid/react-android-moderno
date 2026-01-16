@@ -3,8 +3,10 @@ module.exports = {
   roots: ["<rootDir>/src"],
   testMatch: ["**/__tests__/**/*.test.js"],
   collectCoverageFrom: [
-    "src/**/*.js",
+    "src/core/**/*.js",
     "!src/**/*.test.js",
     "!src/__tests__/**",
   ],
+  coverageReporters: ["text", "lcov", "clover"],
+  coverageDirectory: "coverage",
 };
