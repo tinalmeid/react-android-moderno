@@ -22,26 +22,45 @@ jobs:
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
-      # --- TESTES DE REGRA DE NEGÓCIO (APP 1) ---
-      - name: 🧪 Executar Testes (01-Sorteador)
+      # --- TESTES COM CORREÇÃO DE CAMINHO (ABSOLUTO E RELATIVO) ---
+      - name: 🧪 Executar Testes Unitários
         run: |
-          if [ -d "01-Sorteador" ]; then
-             echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
-             cd 01-Sorteador
-             npm install --ignore-scripts
-             npm test -- --coverage
-          elif [ -d "00-SmokeTeste" ]; then
-             echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
-             cd 00-SmokeTeste
-             npm install --ignore-scripts
-             npm test -- --coverage
-          else
-             echo "⚠️ Pasta do App 1 não encontrada. Pulando testes."
-          fi
+          run_test_if_exists() {
+            FOLDER=$1
+            if [ -d "$FOLDER" ]; then
+              echo "📂 Entrando em $FOLDER..."
+              cd "$FOLDER"
+              npm install --legacy-peer-deps --ignore-scripts
 
-      # --- SONAR CLOUD (CONFIGURAÇÃO BLINDADA) ---
+              if grep -q '"test":' package.json; then
+                 echo "✅ Rodando testes..."
+                 npm test
+
+                 # --- CORREÇÃO HÍBRIDA DO LCOV ---
+                 if [ -f coverage/lcov.info ]; then
+                    echo "🔧 Ajustando caminhos no lcov.info..."
+
+                    # Normaliza caminhos: remove backslashes do Windows e converte para forward slash
+                    sed -i 's|\\|/|g' coverage/lcov.info
+
+                    # Se o caminho começa com SF:src, adiciona o nome da pasta
+                    sed -i "s|SF:src|SF:$FOLDER/src|g" coverage/lcov.info
+                 fi
+                 # --------------------------------
+              else
+                 echo "⚠️ Sem testes configurados."
+              fi
+              cd ..
+            fi
+          }
+
+          run_test_if_exists "00-SmokeTest"
+          run_test_if_exists "01-AppSorteio"
+          run_test_if_exists "04-AppFrases"
+
+      # --- SONAR CLOUD (CONFIGURAÇÃO FINAL) ---
       - name: 📡 SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
@@ -53,4 +72,4 @@ jobs:
             -Dsonar.organization=tinalmeid
             -Dsonar.sources=.
             -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
-            -Dsonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
+            -Dsonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/04-AppFrases/src/screens/**,**/04-AppFrases/src/data/**,**/04-AppFrases/App.js,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js

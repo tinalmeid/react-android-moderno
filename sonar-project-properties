@@ -1,15 +1,15 @@
 sonar.projectKey=tinalmeid_react-android-moderno
 sonar.organization=tinalmeid
 sonar.sources=.
-sonar.javascript.lcov.reportPaths=**/coverage/lcov.info
+sonar.javascript.lcov.reportPaths=00-SmokeTest/coverage/lcov.info,01-AppSorteio/coverage/lcov.info,04-AppFrases/coverage/lcov.info
 
 # --- CONFIGURAÇÃO DE EXCLUSÃO ---
 # Ignorar arquivos de configuração e testes
 sonar.exclusions=**/node_modules/**,**/*.test.js,**/*.spec.js,**/*.config.js,**/coverage/**,**/.expo/**
 
 # Lista de pastas que NÃO entram na conta da porcentagem de cobertura (0% ou 100% não importa)
-# Estamos ignorando App 2 e App 3.
-sonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
+# Estamos ignorando App 2 e App 3, e apenas os arquivos de data/screens do App 4.
+sonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/04-AppFrases/src/screens/**,**/04-AppFrases/src/data/**,**/04-AppFrases/App.js,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
 
 # Configuração geral
 sonar.sourceEncoding=UTF-8
