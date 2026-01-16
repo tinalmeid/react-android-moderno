@@ -9,7 +9,7 @@ sonar.exclusions=**/node_modules/**,**/*.test.js,**/*.spec.js,**/*.config.js,**/
 
 # Lista de pastas que NÃO entram na conta da porcentagem de cobertura (0% ou 100% não importa)
 # Estamos ignorando App 2 e App 3.
-sonar.coverage.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/App.js
+sonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
 
 # Configuração geral
 sonar.sourceEncoding=UTF-8
