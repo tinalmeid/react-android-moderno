@@ -19,36 +19,45 @@ jobs:
         with:
           fetch-depth: 0
 
-      #  Node 20 para suportar React Native novo
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # --- TESTES DE REGRA DE NEGÓCIO
+      # --- TESTES DE REGRA DE NEGÓCIO (COM CORREÇÃO DE CAMINHO) ---
       - name: 🧪 Executar Testes Unitários
         run: |
-          # Função para rodar teste de forma segura
+          # Função reutilizável para rodar testes e corrigir caminhos
           run_test_if_exists() {
             FOLDER=$1
             if [ -d "$FOLDER" ]; then
-              echo "📂 Verificando $FOLDER..."
+              echo "📂 Entrando em $FOLDER..."
               cd "$FOLDER"
-              # Instala dependências ignorando conflitos de versão
+
+              # Instalação segura
               npm install --legacy-peer-deps --ignore-scripts
 
-              # Só roda o teste se existir o script "test" no package.json
               if grep -q '"test":' package.json; then
-                 echo "✅ Script de teste encontrado. Rodando..."
+                 echo "✅ Rodando testes em $FOLDER..."
                  npm test -- --coverage
+
+                 # O Jest gera caminhos como "src/arquivo.js".
+                 # O Sonar precisa de "04-AppFrases/src/arquivo.js".
+                 # Este comando adiciona o nome da pasta na frente de todos os caminhos no relatório.
+                 if [ -f coverage/lcov.info ]; then
+                    echo "🔧 Corrigindo caminhos no lcov.info..."
+                    sed -i "s|SF:|SF:$FOLDER/|g" coverage/lcov.info
+                 fi
+                 # ------------------------------
+
               else
-                 echo "⚠️ Script 'test' não encontrado no package.json de $FOLDER. Pulando execução."
+                 echo "⚠️ Script 'test' ausente em $FOLDER."
               fi
               cd ..
             fi
           }
 
-          # Chamada para cada App
+          # Executar para os Apps
           run_test_if_exists "00-SmokeTeste"
           run_test_if_exists "01-Sorteador"
           run_test_if_exists "04-AppFrases"
