@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 'ENG-*'
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -16,37 +17,40 @@ jobs:
       - name: ⬇️ Checkout do Código
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Importante para o SonarCloud analisar o histórico git
+          fetch-depth: 0
 
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-
-      # Estratégia Monorepo (pois serão vários apps no mesmo repositório):
-      - name: 🧪 Executar Testes e Verificar Cobertura (Local Gate)
+      # --- TESTES DE REGRA DE NEGÓCIO (APP 1) ---
+      - name: 🧪 Executar Testes (01-Sorteador)
         run: |
-          # Verifica se a pasta existe antes de tentar entrar
-          if [ -d "00-SmokeTeste" ]; then
-             echo "🟢 Testando Regras de Negócio do App 0..."
-             cd 00-SmokeTeste
-             npm install
-             npm test -- --coverage
-          elif [ -d "01-Sorteador" ]; then
-             echo "🎰 Testando Regras de Negócio do App 1..."
+          if [ -d "01-Sorteador" ]; then
+             echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
              cd 01-Sorteador
              npm install
              npm test -- --coverage
+          elif [ -d "00-SmokeTeste" ]; then
+             echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
+             cd 00-SmokeTeste
+             npm install
+             npm test -- --coverage
           else
-             echo "⚠️ Pasta do App 1 não encontrada com nome padrão. Pulando testes."
+             echo "⚠️ Pasta do App 1 não encontrada. Pulando testes."
           fi
 
+      # --- SONAR CLOUD (CONFIGURAÇÃO BLINDADA) ---
       - name: 📡 SonarCloud Scan
-        # Atualizado para v4
         uses: SonarSource/sonarqube-scan-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
+        with:
+          args: >
+            -Dsonar.projectKey=tinalmeid_react-android-moderno
+            -Dsonar.organization=tinalmeid
+            -Dsonar.sources=.
+            -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
+            -Dsonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
