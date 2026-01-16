@@ -20,5 +20,5 @@ export const getRandomIndex = (max) => {
     return 0;
   }
 
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max); // NOSONAR
 };
