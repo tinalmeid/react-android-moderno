@@ -23,13 +23,12 @@ export default function HomeScreen() {
   const [quote, setQuote] = useState(QUOTES[0]);
   const [currentImage, setCurrentImage] = useState(IMAGES[0]);
 
-  // Atualiza o estado com uma nova frase aleatória
+  // Nova frase e imagem ao clicar no botão
   const handleUpdateContent = () => {
     // Sorteia uma nova frase e imagem
     const quoteIndex = getRandomIndex(QUOTES.length);
     setQuote(QUOTES[quoteIndex]);
 
-    // Sorteia uma nova imagem
     const imageIndex = getRandomIndex(IMAGES.length);
     setCurrentImage(IMAGES[imageIndex]);
   };

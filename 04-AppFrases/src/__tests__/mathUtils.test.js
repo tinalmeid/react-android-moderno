@@ -19,7 +19,7 @@ describe("Core Logic: MathUtils", () => {
     const max = 5;
     const index = getRandomIndex(max);
 
-    // O índice de ser >= 0 e < que o max
+    // O índice deve ser >= 0 e < que o max
     expect(index).toBeGreaterThanOrEqual(0);
     expect(index).toBeLessThan(max);
   });

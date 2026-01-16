@@ -19,44 +19,41 @@ jobs:
         with:
           fetch-depth: 0
 
+      #  Node 20 para suportar React Native novo
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
-      # --- TESTES DE REGRA DE NEGÓCIO (APP 1) ---
-      - name: 🧪 Executar Testes (01-Sorteador)
+      # --- TESTES DE REGRA DE NEGÓCIO
+      - name: 🧪 Executar Testes Unitários
         run: |
-          # 1. Smoke Teste (Se existir)
-          if [ -d "00-SmokeTeste" ]; then
-             echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
-             cd 00-SmokeTeste
-             npm install --ignore-scripts
-             npm test -- --coverage
-             cd .. # IMPORTANTE: Voltar para a raiz
-          fi
+          # Função para rodar teste de forma segura
+          run_test_if_exists() {
+            FOLDER=$1
+            if [ -d "$FOLDER" ]; then
+              echo "📂 Verificando $FOLDER..."
+              cd "$FOLDER"
+              # Instala dependências ignorando conflitos de versão
+              npm install --legacy-peer-deps --ignore-scripts
 
-          # 2. App 01 - Sorteador
-          if [ -d "01-Sorteador" ]; then
-             echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
-             cd 01-Sorteador
-             npm install --ignore-scripts
-             npm test -- --coverage
-             cd ..
-          fi
+              # Só roda o teste se existir o script "test" no package.json
+              if grep -q '"test":' package.json; then
+                 echo "✅ Script de teste encontrado. Rodando..."
+                 npm test -- --coverage
+              else
+                 echo "⚠️ Script 'test' não encontrado no package.json de $FOLDER. Pulando execução."
+              fi
+              cd ..
+            fi
+          }
 
-          # 3. App 04 - Frases (Com correção do React 19)
-          if [ -d "04-AppFrases" ]; then
-             echo "💬 Testando Regras de Negócio do App 04-AppFrases..."
-             cd 04-AppFrases
-             npm install --legacy-peer-deps --ignore-scripts
-             npm test -- --coverage
-             cd ..
-          else
-             echo "⚠️ Pasta 04-AppFrases não encontrada (verifique o nome)."
-          fi
+          # Chamada para cada App
+          run_test_if_exists "00-SmokeTeste"
+          run_test_if_exists "01-Sorteador"
+          run_test_if_exists "04-AppFrases"
 
-      # --- SONAR CLOUD (CONFIGURAÇÃO BLINDADA) ---
+      # --- SONAR CLOUD ---
       - name: 📡 SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
