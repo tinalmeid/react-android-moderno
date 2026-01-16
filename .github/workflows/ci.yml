@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 20
 
-      # --- TESTES COM CORREÇÃO DE CAMINHO ---
+      # --- TESTES COM CORREÇÃO DE CAMINHO (ABSOLUTO E RELATIVO) ---
       - name: 🧪 Executar Testes Unitários
         run: |
           run_test_if_exists() {
@@ -38,11 +38,19 @@ jobs:
                  echo "✅ Rodando testes..."
                  npm test -- --coverage
 
-                 # CORREÇÃO CRÍTICA DE CAMINHO PARA O SONAR
+                 # --- CORREÇÃO HÍBRIDA DO LCOV ---
                  if [ -f coverage/lcov.info ]; then
-                    echo "🔧 Ajustando lcov.info..."
-                    sed -i "s|SF:|SF:$FOLDER/|g" coverage/lcov.info
+                    echo "🔧 Ajustando caminhos no lcov.info..."
+
+                    # 1. Se o Jest gerou caminho ABSOLUTO (remove o prefixo /home/runner/...)
+                    # Isso deixa o caminho como: 04-AppFrases/src/core/mathUtils.js
+                    sed -i "s|$GITHUB_WORKSPACE/||g" coverage/lcov.info
+
+                    # 2. Se o Jest gerou caminho RELATIVO (começa com SF:src/)
+                    # Adiciona o nome da pasta na frente: SF:04-AppFrases/src/
+                    sed -i "s|SF:src|SF:$FOLDER/src|g" coverage/lcov.info
                  fi
+                 # --------------------------------
               else
                  echo "⚠️ Sem testes configurados."
               fi
@@ -54,7 +62,7 @@ jobs:
           run_test_if_exists "01-Sorteador"
           run_test_if_exists "04-AppFrases"
 
-      # --- SONAR CLOUD (AGRESSIVO: SÓ O QUE IMPORTA) ---
+      # --- SONAR CLOUD (CONFIGURAÇÃO FINAL) ---
       - name: 📡 SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4
         env:
