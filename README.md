@@ -124,7 +124,8 @@ Para manter a qualidade e a rastreabilidade do projeto, seguimos estritamente:
         |----------------|------------|-----------|-----------|-------|--------|
         | 01-AppSorteio  | 100%       | 100%      | 100%      | 100%  | ✅     |
         | 02-AppNoticias | 100%       | 100%      | 100%      | 100%  | ✅     |
-        | 03-AppNetflix  | 100%       | 100%      | 100%      | 100%* | ✅     |
+        | 03-AppNetflix  | 100%       | 100%      | 100%      | 100%  | ✅     |
+        | 04-AppFrases   | 100%       | 100%      | 100%      | 100%  | ✅     |
         ```
 
 4. 🛡️ Quality Gate:
@@ -141,6 +142,8 @@ Para manter a qualidade e a rastreabilidade do projeto, seguimos estritamente:
  ├── .github/workflows/          # 🤖 CI/CD (Quality Gate)
  ├── 01-AppSorteio/              # 📱 App 1: Lógica Básica
  ├── 02-AppNoticias/             # 📰 App 2: Layouts Flexbox
+ ├── 03-AppNetflix/              # 🎬 App 3: Layouts Complexos
+ ├── 04-AppFrases/               # 💬 App 4: Lógica JavaScript
  ├── ...                         # 📂 Outros Apps...
  ├──  sonar-project.properties   # 📡 Configuração de Qualidade Global
  └── README.md
@@ -154,9 +157,9 @@ ENG-641	     ⚙️ Configuração Projeto CI, Actions e Sonar	   ENG-641-chore/
 ENG-645	     🎲 Fundamentos e App 1 (Sorteador Numérico)	   ENG-645-feat/app1-sorteador	  ✅ Concluído
 ENG-646	     📰 Layouts Básicos e App 2 (Portal de Notícias)   ENG-646-feat/app2-noticias	  ✅ Concluído
 ENG-647	     🎬 Layouts Complexos e App 3 (Clone Netflix UI)   ENG-647-feat/app3-netflix	  ✅ Concluído
-ENG-648	     💬 Lógica JavaScript e App 4 (Frases do Dia)	   ENG-648-feat/app4-frases	      📅 Planejado
+ENG-648	     💬 Lógica JavaScript e App 4 (Frases do Dia)	   ENG-648-feat/app4-frases	      ✅ Concluído
 ENG-649	     ✊ Componentização e App 5 (Jokenpo)	           ENG-649-feat/app5-jokenpo	  📅 Planejado
-ENG-650	     ⛽ Formulários e Inputs (App Álcool ou Gasolina) ENG-650-feat/app6-combustivel  📅 Planejado
+ENG-650	     ⛽ Formulários e Inputs (App Álcool ou Gasolina)  ENG-650-feat/app6-combustivel  📅 Planejado
 ENG-651	     💰 Interatividade Real-time (App Gorjetas)	       ENG-651-feat/app7-gorjetas	  📅 Planejado
 ENG-652	     🪙 Navegação Stack (App Cara ou Coroa)	           ENG-652-feat/app8-cara-coroa	  📅 Planejado
 ENG-653	     🏦 Navegação Drawer e Inst. (ATM Consultoria)	   ENG-653-feat/app9-atm	      📅 Planejado

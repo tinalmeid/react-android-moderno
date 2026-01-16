@@ -27,14 +27,19 @@ jobs:
       # --- TESTES DE REGRA DE NEGÓCIO (APP 1) ---
       - name: 🧪 Executar Testes (01-Sorteador)
         run: |
+          if [ -d "00-SmokeTeste" ]; then
+             echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
+             cd 00-SmokeTeste
+             npm install --ignore-scripts
+             npm test -- --coverage
           if [ -d "01-Sorteador" ]; then
              echo "🎰 Testando Regras de Negócio do App 01-Sorteador..."
              cd 01-Sorteador
              npm install --ignore-scripts
              npm test -- --coverage
-          elif [ -d "00-SmokeTeste" ]; then
-             echo "🟢 Testando Regras de Negócio do App 00-SmokeTeste..."
-             cd 00-SmokeTeste
+          if [ -d "04-AppFrases" ]; then
+             echo "💬 Testando Regras de Negócio do App 04-AppFrases..."
+             cd 04-AppFrases
              npm install --ignore-scripts
              npm test -- --coverage
           else

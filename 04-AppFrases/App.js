@@ -1,20 +1,15 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+/**
+ * @file App.js
+ * @description Ponto de entrada principal do App Frases Motivacionais
+ *
+ * @module App
+ * @author Tina Almeida
+ * @date 2025-01-15
+ * Task: ENG-648 App Frases Motivacionais
+ */
+import React from "react";
+import HomeScreen from "./src/screens/HomeScreen";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <HomeScreen />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
