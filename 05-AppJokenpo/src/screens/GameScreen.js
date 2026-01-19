@@ -4,17 +4,12 @@
  * @module screens/GameScreen
  *
  * @author Tina Almeida
- * @date 2025-01-18
+ * @date 2026-01-18
  * Tasks: ENG-649 Componentização do App Jokenpo
  */
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
 // Importando dados e lógica do jogo
