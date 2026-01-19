@@ -40,6 +40,7 @@ export const getGameResult = (userChoiceId, cpuChoiceId) => {
  * @returns {Object} - Retorna o objeto de escolha selecionado aleatoriamente.
  */
 export const getRandomChoice = (choices) => {
-  const randomIndex = Math.floor(Math.random() * choices.length);
+  // NOSONAR no final da linha para ignorar alerta de criptografia fraca
+  const randomIndex = Math.floor(Math.random() * choices.length); // NOSONAR
   return choices[randomIndex];
 };
