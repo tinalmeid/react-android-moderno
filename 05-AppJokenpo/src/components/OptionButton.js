@@ -15,14 +15,14 @@ import PropTypes from "prop-types";
 /**
  * Componente de botão para uma opção do jogo Jokenpo.
  * @param {Object} props - Propriedades do componente.
- * @param {string} props.choice - Objeto de escolha contendo id, name e icon.
+ * @param {string} props.choice - Objeto de escolha contendo id, label e icon.
  * @param {Function} props.onPress - Função a ser chamada quando o botão for pressionado.
  * @param {boolean} props.disabled - Indica se o botão está desabilitado.
  */
 
 export default function OptionButton({ choice, onPress, disabled = false }) {
-    return (
-<TouchableOpacity
+  return (
+    <TouchableOpacity
       style={[styles.container, disabled && styles.disabled]}
       onPress={() => onPress(choice)}
       disabled={disabled}
@@ -54,22 +54,22 @@ OptionButton.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     width: 100,
     height: 100,
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     margin: 10,
     elevation: 5,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
   },
   disabled: {
     opacity: 0.6,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: "#e0e0e0",
   },
   icon: {
     fontSize: 40,
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 12,
-    fontWeight: 'bold',
-    color: '#333',
-    textTransform: 'uppercase',
+    fontWeight: "bold",
+    color: "#333",
+    textTransform: "uppercase",
   },
 });

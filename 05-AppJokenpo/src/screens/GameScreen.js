@@ -8,8 +8,13 @@
  * Tasks: ENG-649 Componentização do App Jokenpo
  */
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 // Importando dados e lógica do jogo
