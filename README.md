@@ -161,7 +161,7 @@ ENG-646	     📰 Layouts Básicos e App 2 (Portal de Notícias)   ENG-646-feat/
 ENG-647	     🎬 Layouts Complexos e App 3 (Clone Netflix UI)   ENG-647-feat/app3-netflix	  ✅ Concluído
 ENG-648	     💬 Lógica JavaScript e App 4 (Frases do Dia)	   ENG-648-feat/app4-frases	      ✅ Concluído
 ENG-649	     ✊ Componentização e App 5 (Jokenpo)	           ENG-649-feat/app5-jokenpo	  ✅ Concluído
-ENG-650	     ⛽ Formulários e Inputs (App Álcool ou Gasolina) ENG-650-feat/app6-combustivel  📅 Planejado
+ENG-650	     ⛽ Formulários e Inputs (App Álcool ou Gasolina) ENG-650-feat/app6-combustivel   ✅ Concluído
 ENG-651	     💰 Interatividade Real-time (App Gorjetas)	       ENG-651-feat/app7-gorjetas	  📅 Planejado
 ENG-652	     🪙 Navegação Stack (App Cara ou Coroa)	           ENG-652-feat/app8-cara-coroa	  📅 Planejado
 ENG-653	     🏦 Navegação Drawer e Inst. (ATM Consultoria)	   ENG-653-feat/app9-atm	      📅 Planejado

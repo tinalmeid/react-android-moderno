@@ -42,10 +42,10 @@ describe("Escolha aleatória do computador", () => {
   });
 
   // Teste para verificar estrutura do objeto retornado
-  it("Deve retornar um objeto com propriedades id, name e icon", () => {
+  it("Deve retornar um objeto com propriedades id, label e icon", () => {
     const choice = getRandomChoice(CHOICES);
     expect(choice).toHaveProperty("id");
-    expect(choice).toHaveProperty("name");
+    expect(choice).toHaveProperty("label");
     expect(choice).toHaveProperty("icon");
   });
 

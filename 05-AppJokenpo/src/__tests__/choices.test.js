@@ -17,10 +17,10 @@ describe("Dados do jogo Jokenpo", () => {
   });
 
   // Teste para verificar estrutura dos dados
-  it("Cada opção deve ter id, name e icon", () => {
+  it("Cada opção deve ter id, label e icon", () => {
     CHOICES.forEach((choice) => {
       expect(choice).toHaveProperty("id");
-      expect(choice).toHaveProperty("name");
+      expect(choice).toHaveProperty("label");
       expect(choice).toHaveProperty("icon");
     });
   });

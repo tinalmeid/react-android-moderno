@@ -9,7 +9,7 @@
  */
 
 export const CHOICES = [
-  { id: "rock", name: "Pedra", icon: "🪨" },
-  { id: "paper", name: "Papel", icon: "📄" },
-  { id: "scissors", name: "Tesoura", icon: "✂️" },
+  { id: "rock", label: "Pedra", icon: "🪨" },
+  { id: "paper", label: "Papel", icon: "📄" },
+  { id: "scissors", label: "Tesoura", icon: "✂️" },
 ];
