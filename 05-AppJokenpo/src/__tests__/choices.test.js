@@ -4,13 +4,13 @@
  * @module tests/choices.test
  *
  * @author Tina Almeida
- * @date 2025-01-18
+ * @date 2026-01-18
  * Task: ENG-649 Componentização do App Jokenpo
  */
 
 import { CHOICES } from "../data/choices.js";
 
-describe("Dados do jogo Jokenpo", () => {
+describe("AppJokenpo - Dados do jogo Jokenpo", () => {
   // Teste para verificar quantidade de opções
   it("Deve ter 3 opções de escolha disponíveis", () => {
     expect(CHOICES).toHaveLength(3);

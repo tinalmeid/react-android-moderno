@@ -4,14 +4,14 @@
  * @module tests/gameLogic.test
  *
  * @author Tina Almeida
- * @date 2025-01-18
+ * @date 2026-01-18
  * Tasks: ENG-649 Componentização do App Jokenpo
  */
 
 import { getGameResult, getRandomChoice } from "../core/gameLogic.js";
 import { CHOICES } from "../data/choices.js";
 
-describe("Lógica do jogo Jokenpo", () => {
+describe("AppJokenpo - Lógica do jogo Jokenpo", () => {
   // Teste para empate
   it("Deve retornar 'DRAW' quando ambas as escolhas forem iguais", () => {
     expect(getGameResult("rock", "rock")).toBe("DRAW");

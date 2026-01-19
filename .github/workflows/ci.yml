@@ -60,6 +60,7 @@ jobs:
           run_test_if_exists "01-AppSorteio"
           run_test_if_exists "04-AppFrases"
           run_test_if_exists "05-AppJokenpo"
+          run_test_if_exists "06-AppCombustivel"
 
       # --- SONAR CLOUD (CONFIGURAÇÃO FINAL) ---
       - name: 📡 SonarCloud Scan
@@ -73,4 +74,4 @@ jobs:
             -Dsonar.organization=tinalmeid
             -Dsonar.sources=.
             -Dsonar.javascript.lcov.reportPaths=**/coverage/lcov.info
-            -Dsonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/04-AppFrases/src/screens/**,**/04-AppFrases/src/data/**,**/04-AppFrases/App.js,**/05-AppJokenpo/src/screens/**,**/05-AppJokenpo/src/components/**,**/05-AppJokenpo/App.js,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js
+            -Dsonar.exclusions=**/node_modules/**,**/02-AppNoticias/**,**/03-AppNetflix/**,**/04-AppFrases/src/screens/**,**/04-AppFrases/src/data/**,**/04-AppFrases/App.js,**/05-AppJokenpo/src/screens/**,**/05-AppJokenpo/src/components/**,**/05-AppJokenpo/App.js,**/06-AppCombustivel/src/screens/**,**/06-AppCombustivel/src/components/**,**/06-AppCombustivel/App.js,**/*.test.js,**/coverage/**,**/.expo/**,**/*.config.js

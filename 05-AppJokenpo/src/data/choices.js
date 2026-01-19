@@ -4,7 +4,7 @@
  * @module data/choices
  *
  * @author Tina Almeida
- * @date 2025-01-18
+ * @date 2026-01-18
  * Tasks: ENG-649 Componentização do App Jokenpo
  */
 
